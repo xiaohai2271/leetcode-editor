@@ -12,6 +12,7 @@ public class Question {
     private String questionTypename;
     private String typeName;
     private Integer level;
+    private String difficulty;
     private String status;
     private String titleSlug;
     private boolean leaf = Boolean.FALSE;
@@ -102,6 +103,15 @@ public class Question {
 
     public void setLevel(Integer level) {
         this.level = level;
+        this.difficulty = (level == 1 ? "easy" : (level == 2 ? "medium" : "hard"));
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
     public String getStatus() {
