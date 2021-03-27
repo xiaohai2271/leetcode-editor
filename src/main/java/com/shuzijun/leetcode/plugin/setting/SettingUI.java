@@ -8,6 +8,7 @@ import com.intellij.openapi.editor.EditorSettings;
 import com.intellij.openapi.editor.impl.EditorImpl;
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.fileTypes.FileTypeManager;
+import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.TextBrowseFolderListener;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.ui.components.JBPasswordField;
@@ -45,7 +46,9 @@ public class SettingUI {
     private JLabel easyLabel;
     private JLabel mediumLabel;
     private JLabel hardLabel;
+    // 临时文件
     private TextFieldWithBrowseButton fileFolderBtn;
+    private TextFieldWithBrowseButton codeFileFolderBtn;
     private JCheckBox customCodeBox;
     private JCheckBox updateCheckBox;
     private JCheckBox proxyCheckBox;
@@ -80,6 +83,8 @@ public class SettingUI {
         hardLabel.addMouseListener(new ColorListener(mainPanel, hardLabel));
 
         fileFolderBtn.addBrowseFolderListener(new TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor()) {
+        });
+        codeFileFolderBtn.addBrowseFolderListener(new TextBrowseFolderListener(FileChooserDescriptorFactory.createSingleFileOrFolderDescriptor()) {
         });
 
         customCodeBox.addActionListener(new DonateListener(customCodeBox));
@@ -157,12 +162,18 @@ public class SettingUI {
         codeComboBox.setSelectedIndex(0);
         fileFolderBtn.setText(System.getProperty("java.io.tmpdir"));
 
+        String basePath = ProjectManager.getInstance().getOpenProjects()[0].getBasePath();
+        codeFileFolderBtn.setText(basePath.replaceAll("\\|/", File.separator));
+
         Config config = PersistentConfig.getInstance().getInitConfig();
         if (config != null) {
             userNameField.setText(config.getLoginName());
             passwordField.setText(PersistentConfig.getInstance().getPassword());
             if (StringUtils.isNotBlank(config.getFilePath())) {
                 fileFolderBtn.setText(config.getFilePath());
+            }
+            if (StringUtils.isNotBlank(config.getCodeFilePath())) {
+                codeFileFolderBtn.setText(config.getCodeFilePath());
             }
             if (StringUtils.isNotBlank(config.getCodeType())) {
                 codeComboBox.setSelectedItem(config.getCodeType());
@@ -242,6 +253,7 @@ public class SettingUI {
         config.setVersion(Constant.PLUGIN_CONFIG_VERSION_2);
         config.setLoginName(userNameField.getText());
         config.setFilePath(fileFolderBtn.getText());
+        config.setCodeFilePath(codeFileFolderBtn.getText());
         config.setCodeType(codeComboBox.getSelectedItem().toString());
         config.setUrl(webComboBox.getSelectedItem().toString());
         config.setUpdate(updateCheckBox.isSelected());

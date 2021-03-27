@@ -38,6 +38,7 @@ public class Config {
      */
     private String filePath;
 
+    private String codeFilePath;
     /**
      * 语言
      */
@@ -118,6 +119,14 @@ public class Config {
 
     public String getFilePath() {
         return filePath;
+    }
+
+    public String getCodeFilePath() {
+        return codeFilePath;
+    }
+
+    public void setCodeFilePath(String codeFilePath) {
+        this.codeFilePath = codeFilePath;
     }
 
     public void setFilePath(String filePath) {

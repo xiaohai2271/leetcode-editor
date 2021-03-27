@@ -66,6 +66,10 @@ public class PersistentConfig implements PersistentStateComponent<PersistentConf
         return getConfig().getFilePath() + File.separator;
     }
 
+    public String getCodeFilePath() {
+        return getConfig().getCodeFilePath() + File.separator;
+    }
+
     public void savePassword(String password) {
         try {
             PasswordSafe.getInstance().storePassword
