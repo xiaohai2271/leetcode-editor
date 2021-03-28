@@ -24,7 +24,7 @@ public class UpdatePluginListener implements AncestorListener {
             if (Constant.PLUGIN_CONFIG_VERSION_1.equals(config.getVersion()) || config.getVersion() == null) {
                 File oldFile = new File(config.getFilePath() + File.separator + PersistentConfig.OLDPATH + File.separator);
                 if (oldFile.getParentFile().exists()) {
-                    File newFile = new File(config.getFilePath() + File.separator + PersistentConfig.PATH + File.separator);
+                    File newFile = new File(config.getCodeFilePath());
                     if (!newFile.getParentFile().exists()) {
                         newFile.getParentFile().mkdirs();
                     }

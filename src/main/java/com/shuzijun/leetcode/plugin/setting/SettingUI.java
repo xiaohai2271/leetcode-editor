@@ -239,10 +239,10 @@ public class SettingUI {
             config.setId(MTAUtils.getI(""));
         }
         process(config);
-        File file = new File(config.getFilePath() + File.separator + PersistentConfig.PATH + File.separator);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
+//        File file = new File(config.getFilePath() + File.separator + PersistentConfig.PATH + File.separator);
+//        if (!file.exists()) {
+//            file.mkdirs();
+//        }
         PersistentConfig.getInstance().setInitConfig(config);
         PersistentConfig.getInstance().savePassword(passwordField.getText());
         CustomTreeCellRenderer.loaColor();
