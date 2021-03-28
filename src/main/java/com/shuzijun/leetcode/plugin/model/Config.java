@@ -324,6 +324,7 @@ public class Config {
         if (version != null ? !version.equals(config.version) : config.version != null) return false;
         if (loginName != null ? !loginName.equals(config.loginName) : config.loginName != null) return false;
         if (filePath != null ? !filePath.equals(config.filePath) : config.filePath != null) return false;
+        if (codeFilePath != null ? !codeFilePath.equals(config.codeFilePath) : config.codeFilePath != null) return false;
         if (codeType != null ? !codeType.equals(config.codeType) : config.codeType != null) return false;
         if (url != null ? !url.equals(config.url) : config.url != null) return false;
         if (update != null ? !update.equals(config.update) : config.update != null) return false;
