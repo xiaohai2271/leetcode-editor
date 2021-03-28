@@ -2,6 +2,8 @@ package com.shuzijun.leetcode.plugin.model;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.util.Locale;
+
 /**
  * @author shuzijun
  */
@@ -11,7 +13,7 @@ public class Question {
     private String questionId;
     private String questionTypename;
     private String typeName;
-    private Integer level;
+    private Integer level = 0;
     private String difficulty;
     private String status;
     private String titleSlug;
@@ -103,7 +105,7 @@ public class Question {
 
     public void setLevel(Integer level) {
         this.level = level;
-        this.difficulty = (level == 1 ? "easy" : (level == 2 ? "medium" : "hard"));
+        this.difficulty = (level == 1 ? "easy" : (level == 2 ? "medium" : (level == 3 ? "hard" : "default")));
     }
 
     public String getDifficulty() {
@@ -111,7 +113,7 @@ public class Question {
     }
 
     public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
+        this.difficulty = difficulty.toLowerCase(Locale.ROOT);
     }
 
     public String getStatus() {

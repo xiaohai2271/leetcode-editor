@@ -159,7 +159,7 @@ public class ExploreManager {
 
         try {
             HttpRequest httpRequest = HttpRequest.post(URLUtils.getLeetcodeGraphql(),"application/json");
-            httpRequest.setBody("{\"operationName\":\"GetItem\",\"variables\":{\"itemId\":\"" + q.getQuestionId() + "\"},\"query\":\"query GetItem($itemId: String!) {\\n  item(id: $itemId) {\\n    id\\n    title\\n    type\\n    paidOnly\\n    lang\\n    question {\\n      questionId\\n      title\\n      titleSlug\\n      __typename\\n    }\\n    article {\\n      id\\n      title\\n      __typename\\n    }\\n    video {\\n      id\\n      __typename\\n    }\\n    htmlArticle {\\n      id\\n      __typename\\n    }\\n    webPage {\\n      id\\n      __typename\\n    }\\n    __typename\\n  }\\n  isCurrentUserAuthenticated\\n}\\n\"}");
+            httpRequest.setBody("{\"operationName\":\"GetItem\",\"variables\":{\"itemId\":\"" + q.getQuestionId() + "\"},\"query\":\"query GetItem($itemId: String!) {\\n  item(id: $itemId) {\\n    id\\n    title\\n  type\\n    paidOnly\\n    lang\\n    question {\\n  difficulty \\n   questionId\\n      title\\n      titleSlug\\n      __typename\\n    }\\n    article {\\n      id\\n      title\\n      __typename\\n    }\\n    video {\\n      id\\n      __typename\\n    }\\n    htmlArticle {\\n      id\\n      __typename\\n    }\\n    webPage {\\n      id\\n      __typename\\n    }\\n    __typename\\n  }\\n  isCurrentUserAuthenticated\\n}\\n\"}");
             httpRequest.addHeader("Accept", "application/json");
             HttpResponse response = HttpRequestUtils.executePost(httpRequest);
             if (response != null && response.getStatusCode() == 200) {
@@ -174,6 +174,7 @@ public class ExploreManager {
                         q.setQuestionId(question.getString("questionId"));
                         q.setFrontendQuestionId(question.getString("questionId"));
                         q.setTitleSlug(question.getString("titleSlug"));
+                        q.setDifficulty(question.getString("difficulty"));
                     }else {
                         q.setNodeType(Constant.NODETYPE_DEF);
                         q.setQuestionId(question.getString("id"));
