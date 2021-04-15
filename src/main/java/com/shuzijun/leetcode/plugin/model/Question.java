@@ -20,6 +20,7 @@ public class Question {
     private boolean leaf = Boolean.FALSE;
     private String testCase;
     private String langSlug;
+    private String link;
     private String nodeType = Constant.NODETYPE_DEF;
     /**
      * 页面的题目编号
@@ -69,6 +70,14 @@ public class Question {
             sb.append("[").append(frontendQuestionId).append("]");
         }
         return sb.append(title).toString();
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public void setTitle(String title) {
