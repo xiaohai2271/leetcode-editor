@@ -277,7 +277,6 @@ public class CodeManager {
     }
 
     private static boolean fillQuestion(Question question, Project project) {
-        question.setLink(URLUtils.getLeetcodeProblems() + question.getTitleSlug());
         if (Constant.NODETYPE_ITEM.equals(question.getNodeType())) {
             ExploreManager.getItem(question);
             if (StringUtils.isBlank(question.getTitleSlug())) {

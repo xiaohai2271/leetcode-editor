@@ -122,7 +122,6 @@ public class Question {
 
     public void setLevel(Integer level) {
         this.level = level;
-        this.difficulty = (level == 1 ? "easy" : (level == 2 ? "medium" : (level == 3 ? "hard" : "default")));
     }
 
     public String getDifficulty() {

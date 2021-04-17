@@ -206,6 +206,7 @@ public class QuestionManager {
                 JSONObject object = jsonArray.getJSONObject(i);
                 Question question = new Question(object.getJSONObject("stat").getString("question__title"));
                 question.setLeaf(Boolean.TRUE);
+                question.setLink(URLUtils.getLeetcodeProblems() + question.getTitleSlug());
                 question.setQuestionId(object.getJSONObject("stat").getString("question_id"));
                 question.setSubmissions(object.getJSONObject("stat").getInteger("total_submitted"));
                 question.setAccepted(object.getJSONObject("stat").getInteger("total_acs"));
@@ -220,7 +221,9 @@ public class QuestionManager {
                     question.setStatus("");
                 }
                 question.setTitleSlug(object.getJSONObject("stat").getString("question__title_slug"));
-                question.setLevel(object.getJSONObject("difficulty").getInteger("level"));
+                Integer level = object.getJSONObject("difficulty").getInteger("level");
+                question.setLevel(level);
+                question.setDifficulty((level == 1 ? "easy" : (level == 2 ? "medium" : (level == 3 ? "hard" : "default"))));
                 try {
                     if (object.getJSONObject("stat").containsKey("question__article__live")) {
                         if (object.getJSONObject("stat").get("question__article__live") == null
