@@ -207,6 +207,8 @@ public class QuestionManager {
                 Question question = new Question(object.getJSONObject("stat").getString("question__title"));
                 question.setLeaf(Boolean.TRUE);
                 question.setQuestionId(object.getJSONObject("stat").getString("question_id"));
+                question.setSubmissions(object.getJSONObject("stat").getInteger("total_submitted"));
+                question.setAccepted(object.getJSONObject("stat").getInteger("total_acs"));
                 question.setFrontendQuestionId(object.getJSONObject("stat").getString("frontend_question_id"));
                 try {
                     if (object.getBoolean("paid_only") && isPremium) {

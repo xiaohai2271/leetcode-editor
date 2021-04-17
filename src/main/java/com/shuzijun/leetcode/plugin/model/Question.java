@@ -46,6 +46,14 @@ public class Question {
      */
     private String articleSlug;
 
+    /**
+     * 提交总数
+     */
+    private Integer submissions;
+    /**
+     * 通过
+     */
+    private Integer accepted;
 
     public Question() {
 
@@ -211,6 +219,22 @@ public class Question {
 
     public void setArticleSlug(String articleSlug) {
         this.articleSlug = articleSlug;
+    }
+
+    public Integer getSubmissions() {
+        return submissions;
+    }
+
+    public void setSubmissions(Integer submissions) {
+        this.submissions = submissions;
+    }
+
+    public Integer getAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(Integer accepted) {
+        this.accepted = accepted;
     }
 
     @Override
