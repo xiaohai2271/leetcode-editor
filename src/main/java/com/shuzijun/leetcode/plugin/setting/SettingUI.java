@@ -59,6 +59,7 @@ public class SettingUI {
     private JPanel codeTemplate;
     private JPanel templateConstant;
     private JCheckBox jcefCheckBox;
+    private JCheckBox showAcceptanceCheckBox;
 
 
     private Editor fileNameEditor = null;
@@ -182,6 +183,7 @@ public class SettingUI {
                 webComboBox.setSelectedItem(config.getUrl());
             }
             updateCheckBox.setSelected(config.getUpdate());
+            showAcceptanceCheckBox.setSelected(config.getShowPassingRate());
             customCodeBox.setSelected(config.getCustomCode());
             ApplicationManager.getApplication().runWriteAction(() -> {
                 fileNameEditor.getDocument().setText(config.getCustomFileName());
@@ -257,6 +259,7 @@ public class SettingUI {
         config.setCodeType(codeComboBox.getSelectedItem().toString());
         config.setUrl(webComboBox.getSelectedItem().toString());
         config.setUpdate(updateCheckBox.isSelected());
+        config.setShowPassingRate(showAcceptanceCheckBox.isSelected());
         config.setCustomCode(customCodeBox.isSelected());
         config.setCustomFileName(fileNameEditor.getDocument().getText());
         config.setCustomTemplate(templateEditor.getDocument().getText());

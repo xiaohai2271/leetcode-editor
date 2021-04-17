@@ -5,6 +5,8 @@ import com.intellij.ide.util.treeView.NodeRenderer;
 import com.shuzijun.leetcode.plugin.model.Config;
 import com.shuzijun.leetcode.plugin.model.Question;
 import com.shuzijun.leetcode.plugin.setting.PersistentConfig;
+import com.shuzijun.leetcode.plugin.utils.VelocityTool;
+import org.apache.commons.lang.StringUtils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,7 +28,7 @@ public class CustomTreeCellRenderer extends NodeRenderer {
         loaColor();
     }
 
-    public static void loaColor(){
+    public static void loaColor() {
         Config config = PersistentConfig.getInstance().getInitConfig();
         if (config != null) {
             Color[] colors = config.getFormatLevelColour();
@@ -51,10 +53,19 @@ public class CustomTreeCellRenderer extends NodeRenderer {
     @Override
     public void customizeCellRenderer(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 
-        super.customizeCellRenderer(tree, value, selected, expanded, leaf, row, hasFocus);
-
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
         Question question = (Question) node.getUserObject();
+
+        Boolean showPassingRate = PersistentConfig.getInstance().getConfig().getShowPassingRate();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(question);
+
+        if (showPassingRate && StringUtils.isNotBlank(question.getFrontendQuestionId()) && leaf) {
+            stringBuilder.append("     ").append(VelocityTool.percentage(question.getAccepted(), question.getSubmissions()));
+        }
+
+        super.customizeCellRenderer(tree, stringBuilder.toString(), selected, expanded, leaf, row, hasFocus);
 
         if (question.getLevel() == null) {
 
