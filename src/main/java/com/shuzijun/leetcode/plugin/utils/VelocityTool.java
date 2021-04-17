@@ -114,8 +114,25 @@ public class VelocityTool extends StringUtils {
         }
     }
 
+    public static String percentage(Integer dividend, Integer divisor) {
+        return percentage(dividend.doubleValue(), divisor.doubleValue());
+    }
+
+    public static String percentage(Float dividend, Float divisor) {
+        return percentage(dividend, divisor);
+    }
+
+    public static String percentage(Number dividend, Number divisor) {
+        if (dividend == null || divisor == null) return "0%";
+        if ((dividend.doubleValue() * 100) % divisor.doubleValue() == 0)
+            return String.format("%.0f%%", dividend.doubleValue() / divisor.doubleValue() * 100);
+        return String.format("%.2f%%", dividend.doubleValue() / divisor.doubleValue() * 100);
+    }
+
+
+
     public static String date() {
-            return date("yyyy-MM-dd HH:mm:ss");
+        return date("yyyy-MM-dd HH:mm:ss");
     }
 
     public static String date(String format) {
