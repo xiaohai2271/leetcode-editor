@@ -7,12 +7,6 @@ package com.shuzijun.leetcode.plugin.model;
  */
 public class Constant {
 
-    public static final String PLUGIN_ID = "leetcode-editor";
-    /**
-     * 通知分组
-     */
-    public static final String NOTIFICATION_GROUP = "leetcode editor";
-
     /**
      * 题目难度
      */
@@ -31,6 +25,8 @@ public class Constant {
     public static final String NODETYPE_CARD = "card";
     public static final String NODETYPE_CHAPTER = "chapter";
     public static final String NODETYPE_ITEM = "item";
+    public static final String NODETYPE_TAG = "tag";
+    public static final String NODETYPE_PROBLEMS = "problems";
     /**
      * 探索下列表内容
      */
@@ -85,5 +81,23 @@ public class Constant {
     public static final Integer ARTICLE_LIVE_NONE = 0;
     public static final Integer ARTICLE_LIVE_ONE = 1;
     public static final Integer ARTICLE_LIVE_LIST = 2;
+
+    /**
+     * 排序类型
+     */
+    public static final int SORT_NONE = 0;
+    public static final int SORT_ASC = 1;
+    public static final int SORT_DESC = 2;
+
+    /**
+     * 排序类别
+     */
+    public static final String SORT_TYPE_ID = "SortById";
+    public static final String SORT_TYPE_TITLE = "SortByTitle";
+    public static final String SORT_TYPE_SOLUTION = "SortBySolution";
+    public static final String SORT_TYPE_ACCEPTANCE = "SortByAcceptance";
+    public static final String SORT_TYPE_DIFFICULTY = "SortByDifficulty";
+    public static final String SORT_TYPE_FREQUENCY = "SortByFrequency";
+
 
 }

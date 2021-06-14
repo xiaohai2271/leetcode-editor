@@ -616,6 +616,35 @@
             </group>
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
         </group>
+
+        <group id="leetcode.find.SortToolbar" popup="true" text="Sort">
+            <action id="leetcode.sort.Sort"
+                    class="com.shuzijun.leetcode.plugin.actions.toolbar.SortAction"
+                    text="Sort:" description="label"/>
+            <separator/>
+            <action id="leetcode.sort.SortById"
+                    class="com.shuzijun.leetcode.plugin.actions.toolbar.SortAction"
+                    text="Id" description="Sort By Id" icon="LeetCodeEditorIcons.SORT_ASC"/>
+
+            <action id="leetcode.sort.SortByTitle" class="com.shuzijun.leetcode.plugin.actions.toolbar.SortAction"
+                    text="Title" description="Sort By Title" icon="LeetCodeEditorIcons.SORT_ASC"/>
+
+            <action id="leetcode.sort.SortBySolution" class="com.shuzijun.leetcode.plugin.actions.toolbar.SortAction"
+                    text="Solution" description="Sort By Solution" icon="LeetCodeEditorIcons.SORT_ASC"/>
+
+            <action id="leetcode.sort.SortByAcceptance"
+                    class="com.shuzijun.leetcode.plugin.actions.toolbar.SortAction"
+                    text="Acceptance" description="Sort By Acceptance" icon="LeetCodeEditorIcons.SORT_ASC"/>
+
+            <action id="leetcode.sort.SortByDifficulty"
+                    class="com.shuzijun.leetcode.plugin.actions.toolbar.SortAction"
+                    text="Difficulty" description="Sort By Difficulty" icon="LeetCodeEditorIcons.SORT_ASC"/>
+
+            <action id="leetcode.sort.SortByFrequency"
+                    class="com.shuzijun.leetcode.plugin.actions.toolbar.SortAction"
+                    text="Frequency" description="Sort By Frequency" icon="LeetCodeEditorIcons.SORT_ASC"/>
+        </group>
+
     </actions>
 
 

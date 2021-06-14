@@ -13,14 +13,13 @@ public class Question {
     private String questionId;
     private String questionTypename;
     private String typeName;
-    private Integer level = 0;
+    private Integer level;
     private String difficulty;
     private String status;
     private String titleSlug;
     private boolean leaf = Boolean.FALSE;
     private String testCase;
     private String langSlug;
-    private String link;
     private String nodeType = Constant.NODETYPE_DEF;
     /**
      * 页面的题目编号
@@ -54,6 +53,18 @@ public class Question {
      * 通过
      */
     private Integer accepted;
+    /**
+     * 通过率 %
+     */
+    private Double acceptance = 0D;
+    /**
+     * 专栏文章
+     */
+    private Integer columnArticles = 0;
+    /**
+     * 频率
+     */
+    private Double frequency = 0d;
 
     public Question() {
 
@@ -78,14 +89,6 @@ public class Question {
             sb.append("[").append(frontendQuestionId).append("]");
         }
         return sb.append(title).toString();
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
     }
 
     public void setTitle(String title) {
@@ -218,6 +221,37 @@ public class Question {
 
     public void setArticleSlug(String articleSlug) {
         this.articleSlug = articleSlug;
+    }
+
+    public Integer getColumnArticles() {
+        return columnArticles;
+    }
+
+    public void setColumnArticles(Integer columnArticles) {
+        this.columnArticles = columnArticles;
+    }
+
+
+
+
+    public Double getAcceptance() {
+        return acceptance;
+    }
+
+    public void setAcceptance() {
+        if (this.submissions == 0) {
+            this.acceptance = 0D;
+        } else {
+            this.acceptance = Double.parseDouble(this.accepted + "") / Double.parseDouble(this.submissions + "");
+        }
+    }
+
+    public Double getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(Double frequency) {
+        this.frequency = frequency;
     }
 
     public Integer getSubmissions() {

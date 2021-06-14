@@ -14,6 +14,7 @@ import com.intellij.ui.treeStructure.SimpleTree;
 import com.shuzijun.leetcode.plugin.listener.QueryKeyListener;
 import com.shuzijun.leetcode.plugin.listener.TreeMouseListener;
 import com.shuzijun.leetcode.plugin.listener.TreeWillListener;
+import com.shuzijun.leetcode.plugin.model.PluginConstant;
 import com.shuzijun.leetcode.plugin.model.Question;
 import com.shuzijun.leetcode.plugin.renderer.CustomTreeCellRenderer;
 import com.shuzijun.leetcode.plugin.utils.DataKeys;
@@ -35,6 +36,8 @@ public class NavigatorPanel extends SimpleToolWindowPanel implements DataProvide
     private JPanel queryPanel;
     private JBScrollPane contentScrollPanel;
     private SimpleTree tree;
+    private ActionToolbar findToolbar;
+    private ActionToolbar actionSortToolbar;
 
     public NavigatorPanel(ToolWindow toolWindow, Project project) {
         super(Boolean.TRUE, Boolean.TRUE);
@@ -101,8 +104,8 @@ public class NavigatorPanel extends SimpleToolWindowPanel implements DataProvide
         tree.addTreeWillExpandListener(new TreeWillListener(tree, toolWindow, project));
 
 
-        ActionToolbar actionToolbar = actionManager.createActionToolbar("leetcode Toolbar",
-                (DefaultActionGroup) actionManager.getAction("leetcode.NavigatorActionsToolbar"),
+        ActionToolbar actionToolbar = actionManager.createActionToolbar(PluginConstant.ACTION_PREFIX + " Toolbar",
+                (DefaultActionGroup) actionManager.getAction(PluginConstant.LEETCODE_NAVIGATOR_ACTIONS_TOOLBAR),
                 true);
 
         actionToolbar.setTargetComponent(tree);
@@ -124,18 +127,22 @@ public class NavigatorPanel extends SimpleToolWindowPanel implements DataProvide
         queryField.addKeyListener(new QueryKeyListener(queryField, contentScrollPanel, toolWindow));
         queryPanel.add(queryField);
 
-        ActionToolbar findToolbar = actionManager.createActionToolbar("",
-                (DefaultActionGroup) actionManager.getAction("leetcode.find.Toolbar"),
+         findToolbar = actionManager.createActionToolbar("",
+                (DefaultActionGroup) actionManager.getAction(PluginConstant.LEETCODE_FIND_TOOLBAR),
                 true);
         findToolbar.setTargetComponent(tree);
+        actionSortToolbar = actionManager.createActionToolbar("",
+                (DefaultActionGroup) actionManager.getAction(PluginConstant.LEETCODE_FIND_SORT_TOOLBAR),
+                true);
+        actionSortToolbar.setTargetComponent(tree);
         queryPanel.add(findToolbar.getComponent());
+        queryPanel.add(actionSortToolbar.getComponent());
 
         queryPanel.setVisible(false);
         treePanel.setToolbar(queryPanel);
         setContent(treePanel);
 
     }
-
 
     @Override
     public Object getData(String dataId) {
@@ -149,6 +156,12 @@ public class NavigatorPanel extends SimpleToolWindowPanel implements DataProvide
 
         if (DataKeys.LEETCODE_PROJECTS_SCROLL.is(dataId)) {
             return contentScrollPanel;
+        }
+        if (DataKeys.LEETCODE_TOOLBAR_FIND.is(dataId)) {
+            return findToolbar;
+        }
+        if (DataKeys.LEETCODE_TOOLBAR_SORT.is(dataId)) {
+            return actionSortToolbar;
         }
         return super.getData(dataId);
     }
