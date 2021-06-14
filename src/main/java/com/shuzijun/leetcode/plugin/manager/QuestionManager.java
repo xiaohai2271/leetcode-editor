@@ -208,13 +208,10 @@ public class QuestionManager {
                 JSONObject object = jsonArray.getJSONObject(i);
                 Question question = new Question(object.getJSONObject("stat").getString("question__title"));
                 question.setLeaf(Boolean.TRUE);
-                question.setLink(URLUtils.getLeetcodeProblems() + question.getTitleSlug());
                 question.setQuestionId(object.getJSONObject("stat").getString("question_id"));
                 question.setSubmissions(object.getJSONObject("stat").getInteger("total_submitted"));
                 question.setAccepted(object.getJSONObject("stat").getInteger("total_acs"));
                 question.setFrontendQuestionId(object.getJSONObject("stat").getString("frontend_question_id"));
-                question.setAcs(object.getJSONObject("stat").getInteger("total_acs"));
-                question.setSubmitted(object.getJSONObject("stat").getInteger("total_submitted"));
                 question.setAcceptance();
                 try {
                     if (object.getBoolean("paid_only") && isPremium) {

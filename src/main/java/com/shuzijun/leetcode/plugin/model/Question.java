@@ -232,8 +232,6 @@ public class Question {
     }
 
 
-
-
     public Double getAcceptance() {
         return acceptance;
     }
