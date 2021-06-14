@@ -4,7 +4,7 @@
 
 包括以下方面
 
-- 新增` difficulty` `link` `submissions` `accepted`模板常量
+- 新增` difficulty` `submissions` `accepted` `acceptance` 模板常量
 - 修改提交代码的标志行字符
 - 删除默认目录 leetcode\editor
 - 新增设置项，提供代码存储路径
